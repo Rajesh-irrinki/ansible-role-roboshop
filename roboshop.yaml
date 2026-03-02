@@ -1,7 +1,7 @@
-- name: Install and configuring {{ component }}
-  hosts: {{ component }}
+- name: Install and configuring "{{ component }}"
+  hosts: "{{ component }}"
   become: yes
   tasks:
-  - name: Importing {{ component }}
+  - name: Importing "{{ component }}"
     ansible.builtin.import_role:
-      name: {{ component }}
+      name: "{{ component }}"

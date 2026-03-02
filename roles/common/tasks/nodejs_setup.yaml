@@ -45,7 +45,6 @@
   community.general.npm:
     path: /app
     state: present
-  become_user: roboshop
 
 - name: Create {{ component }} service
   ansible.builtin.template:

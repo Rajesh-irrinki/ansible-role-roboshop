@@ -1,7 +1,7 @@
 - name: Import Nodejs setup
   ansible.builtin.import_roles: 
     name: common
-    tasks_from: nodejs_setup
+    tasks_from: nodejs_setup.yaml
 
 - name: Copy mongo repo
   ansible.builtin.copy:

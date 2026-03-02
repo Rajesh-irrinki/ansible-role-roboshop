@@ -1,0 +1,13 @@
+ansible_user: ec2-user
+ansible_password: DevOps321
+
+MONGODB_HOST: mongodb-dev.rajeshirrinki.online
+CATALOGUE_HOST: catalogue-dev.rajeshirrinki.online
+REDIS_HOST: redis-dev.rajeshirrinki.online
+USER_HOST: user-dev.rajeshirrinki.online
+CART_HOST: cart-dev.rajeshirrinki.online
+MYSQL_HOST: mysql-dev.rajeshirrinki.online
+SHIPPING_HOST: shipping-dev.rajeshirrinki.online
+RABBITMQ_HOST: rabbitmq-dev.rajeshirrinki.online
+PAYMENT_HOST: payment-dev.rajeshirrinki.online
+FRONTEND_HOST: frontend-dev.rajeshirrinki.online 

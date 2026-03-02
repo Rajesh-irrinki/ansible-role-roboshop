@@ -1,0 +1,60 @@
+- name: Enable Nodejs 20
+  ansible.builtin.command: dnf module enable nodejs:20 -y
+
+- name: Installing Nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: present
+
+- name: Create system user
+  ansible.builtin.user:
+    name: roboshop
+    home: /app
+    shell: /sbin/nologin
+    system: true
+
+- name: Removing existing app directory
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: Creating app directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+    owner: roboshop
+    group: roboshop
+
+- name: Removing existing zip file
+  ansible.builtin.file:
+    path: /tmp/{{ component }}.zip
+    state: absent
+
+- name: Downloading "{{ component }}" code
+  ansible.builtin.get_url:
+    url: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip 
+    dest: /tmp/{{component}}.zip
+
+- name: Unarchive "{{ component }}" zip
+  ansible.builtin.unarchive:
+    src: /tmp/{{component}}.zip
+    dest: /app
+    remote_src: yes
+
+- name: Install dependencies
+  community.general.npm:
+    path: /app
+    state: present
+  become_user: roboshop
+
+- name: Create {{ component }} service
+  ansible.builtin.template:
+    src: "{{ component }}.service.j2"
+    dest: "/etc/systemd/system/{{ component }}.service"
+  notify: Daemon reload
+
+- name: Enable and Start service
+  ansible.builtin.service:
+    name: "{{ component }}"
+    state: started
+    enabled: yes

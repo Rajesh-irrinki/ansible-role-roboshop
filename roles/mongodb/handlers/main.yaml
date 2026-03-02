@@ -1,5 +1,4 @@
-handlers:
-  - name: Restart mongodb
+- name: Restart mongodb
     ansible.builtin.systemd:
       name: mongod
       state: restarted

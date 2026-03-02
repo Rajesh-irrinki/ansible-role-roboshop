@@ -19,5 +19,5 @@
 
 - name: Load master data
   ansible.builtin.command : mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js 
-  when: INDEX | int < 0
+  when: INDEX.stdout | int < 0
   notify: Restart catalogue

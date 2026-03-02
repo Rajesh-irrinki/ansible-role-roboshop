@@ -1,6 +1,4 @@
----
-handlers:
-  name: Restart catalogue
+- name: Restart catalogue
   ansible.builtin.service:
     name: catalogue
     state: restarted

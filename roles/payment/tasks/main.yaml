@@ -1,0 +1,17 @@
+- name: Calling python setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python_setup
+
+- name: Create {{ component }} service
+  ansible.builtin.template:
+    src: payment.service.j2
+    dest: /etc/systemd/system/payment.service
+  notify: Daemon reload
+
+- name: 
+  ansible.builtin.service:
+    name: payment
+    state: started
+    enabled: yes
+    

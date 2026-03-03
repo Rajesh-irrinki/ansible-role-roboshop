@@ -1,0 +1,5 @@
+- name: Daemon reload
+  ansible.builtin.systemd:
+    name: payment
+    state: restarted
+    daemon_reload: yes

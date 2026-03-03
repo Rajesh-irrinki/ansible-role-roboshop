@@ -30,12 +30,12 @@
     path: /tmp/{{ component }}.zip
     state: absent
 
-- name: Downloading "{{ component }}" code
+- name: Downloading {{ component }} code
   ansible.builtin.get_url:
     url: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip 
     dest: /tmp/{{component}}.zip
 
-- name: Unarchive "{{ component }}" zip
+- name: Unarchive {{ component }} zip
   ansible.builtin.unarchive:
     src: /tmp/{{component}}.zip
     dest: /app

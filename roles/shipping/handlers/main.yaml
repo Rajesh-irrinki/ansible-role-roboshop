@@ -1,0 +1,11 @@
+- name: Daemon reload
+  ansible.builtin.systemd:
+    name: shipping
+    state: restated
+    daemon_reload: yes
+
+- name: Restart service
+  ansible.builtin.service:
+    name: shipping
+    state: restarted
+    enabled: yes

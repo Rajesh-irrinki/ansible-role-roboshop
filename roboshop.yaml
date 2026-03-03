@@ -2,6 +2,6 @@
   hosts: "{{ component }}"
   become: yes
   tasks:
-  - name: Importing "{{ component }}"
+  - name: Importing {{ component }}
     ansible.builtin.import_role:
       name: "{{ component }}"

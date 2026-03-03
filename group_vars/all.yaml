@@ -11,3 +11,5 @@ SHIPPING_HOST: shipping-dev.rajeshirrinki.online
 RABBITMQ_HOST: rabbitmq-dev.rajeshirrinki.online
 PAYMENT_HOST: payment-dev.rajeshirrinki.online
 FRONTEND_HOST: frontend-dev.rajeshirrinki.online 
+
+MYSQL_PASSWORD : RoboShop@1

@@ -1,0 +1,46 @@
+- name: Calling Java setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: java_setup.yaml
+
+- name: Create {{ component }} service
+  ansible.builtin.template:
+    src: shipping.service.j2
+    dest: /etc/systemd/system/shipping.service
+  notify : Daemon reload
+
+- name: Install MySql 
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop: 
+  - PyMySQL
+  - cryptography
+
+- name: Check if cities database exists
+  community.mysql.mysql_db:
+    name: cities
+    state: present
+    login_host: "{{ MYSQL_HOST }}"
+    login_user: root
+    login_password: RoboShop@1
+  check_mode: yes
+  register: db_check
+
+- name: Load to mysql db
+  community.mysql.mysql_db:
+    name: cities
+    state: import
+    target: "{{ item }}"
+    login_host: "{{ MYSQL_HOST }}"
+    login_user: root
+    login_password: RoboShop@1
+  when: "'cities' not in mysql_info.databases"
+  loop: 
+  - /app/db/schema.sql
+  - /app/db/app-user.sql
+  - /app/db/master-data.sql
+  notify: Restart service
+
+
+    

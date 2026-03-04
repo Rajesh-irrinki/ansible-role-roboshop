@@ -30,6 +30,7 @@
   ansible.builtin.unarchive:
     src: /tmp/{{component}}.zip
     dest: /usr/share/nginx/html
+    remote_src: true
 
 - name: Remove Nginx configuration
   ansible.builtin.file:

@@ -52,6 +52,7 @@
   ansible.builtin.copy:
     src: target/shipping-1.0.jar
     dest: shipping.jar
+    remote_src: true
   args:
     chdir: /app
 

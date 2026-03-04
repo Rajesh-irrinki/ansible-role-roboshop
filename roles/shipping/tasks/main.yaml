@@ -27,6 +27,10 @@
   check_mode: yes
   register: db_check
 
+- name: print dc_check
+  ansible.builtin.debug:
+    msg: "{{ db_check }}"
+
 - name: Load to mysql db
   community.mysql.mysql_db:
     name: cities

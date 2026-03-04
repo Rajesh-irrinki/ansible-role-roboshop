@@ -1,5 +1,5 @@
 - name: Copy Rabbitmq repo
-  ansible.builtin.files:
+  ansible.builtin.file:
     src: rabbitmq.repo
     dest: 
 

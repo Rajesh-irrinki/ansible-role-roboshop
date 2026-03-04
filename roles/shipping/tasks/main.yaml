@@ -10,7 +10,7 @@
   notify : Daemon reload
 
 - name: Install MySql 
-  ansible.builtin.dnf:
+  ansible.builtin.pip:
     name: "{{ item }}"
     state: present
   loop: 

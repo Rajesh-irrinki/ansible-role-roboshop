@@ -9,7 +9,12 @@
     dest: /etc/systemd/system/shipping.service
   notify : Daemon reload
 
-- name: Install MySql 
+- name: Install Mysql
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
+- name: Install python dependencies
   ansible.builtin.pip:
     name: "{{ item }}"
     state: present

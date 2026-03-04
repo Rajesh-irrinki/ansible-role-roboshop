@@ -50,9 +50,7 @@
 
 - name: Rename Package
   ansible.builtin.copy:
-    src: target/shipping-1.0.jar
-    dest: shipping.jar
+    src: /app/target/shipping-1.0.jar
+    dest: /app/shipping.jar
     remote_src: true
-  args:
-    chdir: /app
 

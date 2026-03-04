@@ -14,7 +14,7 @@
 
 - name: protected mode off
   ansible.builtin.lineinfile:
-    path:
+    path: /etc/redis/redis.conf
     regexp: "protected-mode"
     line: "protected-mode no"
 

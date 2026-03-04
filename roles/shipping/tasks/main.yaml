@@ -18,13 +18,11 @@
   - cryptography
 
 - name: Check if cities database exists
-  community.mysql.mysql_db:
-    name: cities
-    state: present
+  community.mysql.mysql_info:
     login_host: "{{ MYSQL_HOST }}"
     login_user: root
     login_password: RoboShop@1
-  check_mode: yes
+    filter: databases
   register: db_check
 
 - name: print dc_check
@@ -39,7 +37,7 @@
     login_host: "{{ MYSQL_HOST }}"
     login_user: root
     login_password: RoboShop@1
-  when: "'cities' not in db_check.db_list"
+  when: "'cities' not in db_check.databases"
   loop: 
   - /app/db/schema.sql
   - /app/db/app-user.sql

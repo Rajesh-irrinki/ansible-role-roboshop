@@ -35,7 +35,7 @@
     login_host: "{{ MYSQL_HOST }}"
     login_user: root
     login_password: RoboShop@1
-  when: "'cities' not in mysql_info.databases"
+  when: "'cities' not in db_check.databases"
   loop: 
   - /app/db/schema.sql
   - /app/db/app-user.sql

@@ -9,9 +9,8 @@
     dest: /etc/systemd/system/payment.service
   notify: Daemon reload
 
-- name: 
+- name: Enable and Start {{ component }} service
   ansible.builtin.service:
     name: payment
     state: started
     enabled: yes
-    

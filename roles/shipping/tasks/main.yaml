@@ -1,3 +1,8 @@
+- name: Importing App setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_setup.yaml
+
 - name: Calling Java setup
   ansible.builtin.import_role:
     name: common
@@ -26,10 +31,10 @@
   community.mysql.mysql_info:
     login_host: "{{ MYSQL_HOST }}"
     login_user: root
-    login_password: RoboShop@1
+    login_password: "{{ MYSQL_PASSWORD }}"
     filter: databases
   register: db_check
-  
+
 - name: Load to mysql db
   community.mysql.mysql_db:
     name: cities
@@ -37,7 +42,7 @@
     target: "{{ item }}"
     login_host: "{{ MYSQL_HOST }}"
     login_user: root
-    login_password: RoboShop@1
+    login_password: "{{ MYSQL_PASSWORD }}"
   when: "'cities' not in db_check.databases"
   loop: 
   - /app/db/schema.sql

@@ -1,4 +1,9 @@
-- name: Calling Nodejs setup
+- name: Import App setup
+  ansible.builtin.import_role: 
+    name: common
+    tasks_from: app_setup.yaml
+
+- name: Import Nodejs setup
   ansible.builtin.import_role:
     name: common
     tasks_from: nodejs_setup.yaml
